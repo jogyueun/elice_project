@@ -1,0 +1,42 @@
+# database 연동 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shop_db
+    username: root
+    password: 1234
+
+  # spring data jpa 설정
+  jpa:
+    hibernate:
+      ddl-auto: create # WAS(tomcat) 실행될때마다 모든 테이블을 삭제
+    show-sql: true
+    defer-datasource-initialization: true
+#      properties:
+  sql:
+    init:
+      mode: always
+#      hibernate:
+#        format_sql: true
+#  sql:
+#    init:
+#      mode: always
+#한글 깨짐 현상 해결
+server:
+  servlet:
+    encoding:
+      force: true
+
+## 디버그 레벨로 쿼리 출력
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: Trace
+logging:
+  level:
+    root: info

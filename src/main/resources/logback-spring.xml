@@ -1,0 +1,29 @@
+<configuration>
+    <!--    appender 이름 : File class= File 에 appender -->
+    <appender name="File" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/mylog.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--    root(전체)에 info 레벨 적용-->
+    <root level="error">
+        <!--        appender 이름 : File-->
+        <appender-ref ref="File" />
+    </root>
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[INFO] %kvp %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <!--        appender 이름 : STDOUT-->
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

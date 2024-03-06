@@ -1,0 +1,101 @@
+<table class="table">
+    <input name="sort" type="hidden" value="{{sort}}">
+    <input name="sort" type="hidden" value="{{page}}">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#postList}}
+        <tr>
+            <th>#</th>
+            <td><a href="/posts/{{id}}">{{title}}</a></td>
+            <td>{{nickname}}</td>
+            <td>{{postUpdate}}</td>
+        </tr>
+    {{/postList}}
+    </tbody>
+</table>
+<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" onclick="addQueryParameter('page','1')">1</a></li>
+        <li class="page-item"><a class="page-link" onclick="addQueryParameter('page','2')">2</a></li>
+        <li class="page-item"><a class="page-link" onclick="addQueryParameter('page','3')">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+    <span class="d-flex justify-content-center">
+        <form class="d-flex" class="d-flex justify-content-center" action="/posts/{{board.id}}/keyword" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+            <button class="btn btn-outline-success" type="submit">게시글 검색</button>
+        </form>
+    </span>
+
+
+<button type="button" class="btn btn-primary ms-2" onclick="window.location.href='/posts/{{board.id}}/create'" >게시글 작성하기</button>
+<div class="d-flex justify-content-end" >
+    <button type="button"  id="sort-ASC" class="btn btn-primary me-2"onclick="addQueryParameter('sort','ASC')" >오름차순</button>
+    <button type="button"  id="sort-DESC" class="btn btn-secondary me-2"onclick="addQueryParameter('sort','DESC')" >내림차순</button>
+</div>
+<script>
+    // sort 버튼 활성화 
+    document.addEventListener("DOMContentLoaded", function () {
+        const s = "{{sortStatus}}";
+
+        // 버튼 요소를 변수에 할당
+        var sortASCButton = document.getElementById("sort-ASC");
+        var sortDESCButton = document.getElementById("sort-DESC");
+
+        // 'sort' 매개변수 값에 따라 클래스 토글
+        if (s == "ASC") {
+            toggleButtonClass(sortASCButton, "btn-primary", "btn-secondary");
+            toggleButtonClass(sortDESCButton, "btn-secondary", "btn-primary");
+        } else {
+            toggleButtonClass(sortDESCButton, "btn-primary", "btn-secondary");
+            toggleButtonClass(sortASCButton, "btn-secondary", "btn-primary");
+        }
+
+        // 클래스를 토글하는 함수 정의
+        function toggleButtonClass(element, classToAdd, classToRemove) {
+            element.classList.remove(classToRemove);
+            element.classList.add(classToAdd);
+        }
+    });
+
+    function addQueryParameter(paramKey,paramValue) {
+        var currentUrl = window.location.href;
+
+        var urlObject = new URL(currentUrl);
+
+        // 기존에 이미 해당 쿼리 파라미터가 있는지 확인
+        if (!urlObject.searchParams.has(paramKey)) {
+            // 쿼리 파라미터가 없으면 추가
+            urlObject.searchParams.append(paramKey, paramValue);
+        } else {
+            // 쿼리 파라미터가 있으면 재설정
+            urlObject.searchParams.set(paramKey,paramValue)
+        }
+
+        // 새로운 URL로 이동
+        window.location.href = urlObject.href;
+    }
+
+</script>
+
+
+
+
+

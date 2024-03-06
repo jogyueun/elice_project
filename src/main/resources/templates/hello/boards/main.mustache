@@ -1,0 +1,22 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">게시판 번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#boardList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="boards/{{id}}">{{title}}</a></td>
+            <td>{{nickname}}</td>
+        </tr>
+    {{/boardList}}
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-primary" onclick="window.location.href='/boards/create'" >새로운 게시판 작성</button>
+{{>layouts/footer}}

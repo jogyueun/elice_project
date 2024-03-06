@@ -1,0 +1,36 @@
+{{>layouts/header}}
+<h1 class="text-center">게시글 조회 화면</h1>
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary me-2" onclick="window.location.href='/boards/{{post.boardId}}'" >뒤로가기</button>
+    <button type="button" class="btn btn-primary me-2" onclick="window.location.href='/posts/{{post.id}}/edit'" >수정하기</button>
+    <button type="button" class="btn btn-danger me-2" onclick="window.location.href='/posts/{{post.id}}/delete'" >삭제하기</button>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#post}}
+    <tr>
+        <th>#</th>
+        <td>{{title}}</td>
+        <td>{{nickname}}</td>
+        <td>{{postUpdate}}</td>
+    </tr>
+    {{/post}}
+    </tbody>
+</table>
+<p class="text-center">내용</p>
+<p class="border border-light-subtle">
+    <p class="text-center mb-5">{{post.content}}</p>
+</p>
+<hr>
+<h2 class="text-center">댓글 목록</h2>
+{{>comments/list}}
+{{>comments/new}}
+{{>layouts/footer}}

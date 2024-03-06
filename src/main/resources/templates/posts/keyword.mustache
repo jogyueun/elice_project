@@ -1,0 +1,48 @@
+{{>layouts/header}}
+<h1 class="text-center">키워드가 포함된 게시글의 게시판</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#board}}
+        <tr>
+            <td>#</td>
+            <td>{{title}}</td>
+            <td>{{nickname}}</td>
+        </tr>
+    {{/board}}
+    </tbody>
+</table>
+<p class="text-center">내용</p>
+
+<p class="border border-light-subtle"  >
+<p class="text-center">{{board.content}}</p>
+</p>
+<h1 class="text-center">게시판 키워드 조회 결과</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#postList}}
+        <tr>
+            <th>#</th>
+            <td><a href="/posts/{{id}}">{{title}}</a></td>
+            <td>{{nickname}}</td>
+            <td>{{postUpdate}}</td>
+        </tr>
+    {{/postList}}
+    </tbody>
+</table>
+<button type="button" class="btn btn-secondary me-2" onclick="window.location.href='/boards/{{post.boardId}}'" >뒤로가기</button>
+{{>layouts/footer}}

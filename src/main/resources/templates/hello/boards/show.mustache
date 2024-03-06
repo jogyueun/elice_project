@@ -1,0 +1,25 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#board}}
+    <tr>
+        <th>{{id}}</th>
+        <td>{{title}}</td>
+        <td>{{nickname}}</td>
+        <td>{{boardDate}}</td>
+    </tr>
+    {{/board}}
+    </tbody>
+</table>
+<button type="button" class="btn btn-secondary" onclick="window.location.href='/boards'" >뒤로가기</button>
+<button type="button" class="btn btn-primary" onclick="window.location.href='/boards/{{board.id}}/edit'" >수정하기</button>
+<button type="button" class="btn btn-danger" onclick="window.location.href='/boards/{{board.id}}/delete'" >삭제하기</button>
+{{>layouts/footer}}
